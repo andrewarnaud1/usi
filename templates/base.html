@@ -1,0 +1,29 @@
+{% load static %}
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+    <!-- Image de base de l'application -->
+    <link rel="icon" href="{% static 'images/urban_sport.png' %}">
+
+
+    <title>Urban Sport Impact</title>
+</head>
+<body>
+
+    {% block content %}
+    {% endblock content %}
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

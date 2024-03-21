@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center"> <!-- Ajout de text-center pour centrer le contenu -->
+    <!-- Ajout du logo -->
+    <img src="{% static 'images/urban_sport.png' %}" alt="Urban Sport Impact Logo" class="mb-4" style="max-width: 200px;"> <!-- Ajustez max-width selon la taille souhaitée -->
+
+    <h1 class="mb-4">Bienvenue sur Urban Sport Impact</h1>
+    <p>Cette Web App permet de voir l'impact d'une compétition sur son environnement.</p>
+
+    <!-- Lien pour le requetage de la base de données avec icône FontAwesome -->
+    <a href="{% url 'requete' %}" class="btn btn-primary">
+        <i class="fas fa-database"></i> Requêter la base de données
+    </a>
+</div>
+{% endblock %}
