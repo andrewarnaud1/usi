@@ -1,28 +1,36 @@
 from django.shortcuts import render
+from neo4j import GraphDatabase
 
-from usi.neo4jdb import Neo4jConnection
+# Information de connexion à la base de données Neo4j
+NEO4J_URI = "neo4j+s://83a44375.databases.neo4j.io"
+NEO4J_USERNAME = "neo4j"
+NEO4J_PASSWORD = "yxN0aKhhIPtHp71Na77Y4soZMGdFNuqoVDo34cp3h18"
+AURA_INSTANCEID = "83a44375"
+AURA_INSTANCENAME = "Instance01"
 
 
 def accueil(request):
     return render(request, 'accueil.html')
 
-def requete(request):
-    db = Neo4jConnection(uri='bolt://localhost:7687', user='neo4j', password='Aaron23032015')
-    connected = db.check_connection()
-    query = "MATCH (n) RETURN n LIMIT 30"
-    resultats_bruts = db.execute_query(query)
 
-    # Transformer les résultats en un format plus convivial
-    resultats = [{
-        'id': record['n'].id,
-        'labels': list(record['n'].labels),
-        'properties': dict(record['n'].items()),
-        'description': Neo4jConnection.generer_description({'labels': list(record['n'].labels), 'properties': dict(record['n'].items())})
-    } for record in resultats_bruts]
+def recherche(request):
+    # Driver instantiation
+    driver = GraphDatabase.driver(
+        NEO4J_URI,
+        auth=(NEO4J_USERNAME, NEO4J_PASSWORD)
+    )
 
-    context = {
-        'connected': connected,
-        'resultats': resultats,
-    }
+    print(driver.session())
 
-    return render(request, 'requete.html', context)
+    # # Requêtage des données
+    # cypher_query = """
+    #     MATCH (n:emploi) RETURN n LIMIT 25;
+    # """
+    #
+    # # Query
+    # with driver.session() as session:
+    #     result = session.run(cypher_query).data()
+    #     for record in result:
+    #         print(record)
+
+    return render(request, 'recherche.html', context={'driver': 'driver'})

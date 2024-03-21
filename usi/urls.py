@@ -21,5 +21,5 @@ from usi import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.accueil, name='accueil'),
-    path('requete/', views.requete, name='requete'),
+    path('recherche/', views.recherche, name='recherche'),
 ]
